@@ -14,7 +14,15 @@ use Symfony\Component\DomCrawler\Crawler;
 
 require __DIR__.'/vendor/autoload.php'; // Composer's autoloader
 
-$client = \Symfony\Component\Panther\Client::createChromeClient();
+$client = \Symfony\Component\Panther\Client::createChromeClient(null,
+            [
+                '--window-size=1200,1100',
+                '--headless',
+                '--disable-dev-shm-usage',
+                '--no-sandbox',
+            ],
+            [],
+            null);
 
 $crawler = $client->request('GET', 'https://www.google.com/maps/contrib/103188932634246823105/photos/'); // Yes, this website is 100% in JavaScript
 
